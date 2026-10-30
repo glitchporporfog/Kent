@@ -22,7 +22,11 @@
   body.theme-ocean { --bg-color: #061a2e; --header-bg: rgba(6, 26, 46, 0.85); --my-msg: linear-gradient(135deg, #00b4db, #0083b0); --my-msg-text: #fff; --kent-msg: #0a2d4d; --kent-msg-text: #c3e8ff; --accent: #00b4db; --text-muted: #6b8fa8; --border: rgba(0, 180, 219, 0.2); --input-bg: rgba(0, 180, 219, 0.05); --glow: rgba(0, 180, 219, 0.4); --chat-active: rgba(0, 180, 219, 0.15); }
 
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  body { background-color: var(--bg-color); color: var(--kent-msg-text); display: flex; flex-direction: column; height: 100vh; overflow: hidden; transition: background 0.4s ease, color 0.4s ease; position: relative; -webkit-touch-callout: none; }
+  body { background-color: var(--bg-color); color: var(--kent-msg-text); display: flex; flex-direction: column; height: 100vh; overflow: hidden; transition: background 0.4s ease, color 0.4s ease; position: relative; -webkit-touch-callout: none; align-items: center; }
+  
+  /* Адаптив для ПК (чтобы было как в мессенджере по центру) */
+  header, #chat, footer, #pinned-container { width: 100%; max-width: 800px; margin: 0 auto; }
+
   body:not(.theme-light):not(.theme-matrix)::before, body:not(.theme-light):not(.theme-matrix)::after { content: ''; position: absolute; border-radius: 50%; filter: blur(100px); z-index: -1; opacity: 0.6; animation: float 10s infinite alternate ease-in-out; pointer-events: none; }
   body:not(.theme-light):not(.theme-matrix)::before { width: 300px; height: 300px; background: var(--accent); top: -100px; left: -100px; }
   body:not(.theme-light):not(.theme-matrix)::after { width: 250px; height: 250px; background: var(--my-msg); bottom: -50px; right: -50px; animation-delay: -5s; opacity: 0.3; }
@@ -184,6 +188,11 @@
   #toast-container { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); z-index: 10000; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
   .toast { background: var(--kent-msg); color: var(--kent-msg-text); padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 500; border: 1px solid var(--border); box-shadow: 0 5px 20px rgba(0,0,0,0.2); animation: slideUpToast 0.3s forwards; }
   @keyframes slideUpToast { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  
+  /* Мобильная адаптация */
+  @media (max-width: 800px) {
+    header, #chat, footer, #pinned-container { max-width: 100%; }
+  }
 </style>
 </head>
 <body oncontextmenu="return false;">
@@ -401,9 +410,9 @@
 
 <script>
   // ==========================================
-  // НАСТРОЙКИ GROQ ЧЕРЕЗ CLOUDFLARE WORKER
+  // ФИНАЛЬНАЯ МОДЕЛЬ GROQ
   // ==========================================
-  const MODEL = 'llama-3.3-70b-versatile'; 
+  const MODEL = 'llama-3.1-8b-instant'; 
   const API_URL = 'https://winter-recipe-8a5b.l09629219.workers.dev'; 
   
   const SECRET_PASSWORD = "@sorox@";
@@ -1243,4 +1252,4 @@
   });
 </script>
 </body>
-      </html>
+                                 </html>
