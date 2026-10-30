@@ -24,7 +24,6 @@
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
   body { background-color: var(--bg-color); color: var(--kent-msg-text); display: flex; flex-direction: column; height: 100vh; overflow: hidden; transition: background 0.4s ease, color 0.4s ease; position: relative; -webkit-touch-callout: none; align-items: center; }
   
-  /* Адаптив для ПК (чтобы было как в мессенджере по центру) */
   header, #chat, footer, #pinned-container { width: 100%; max-width: 800px; margin: 0 auto; }
 
   body:not(.theme-light):not(.theme-matrix)::before, body:not(.theme-light):not(.theme-matrix)::after { content: ''; position: absolute; border-radius: 50%; filter: blur(100px); z-index: -1; opacity: 0.6; animation: float 10s infinite alternate ease-in-out; pointer-events: none; }
@@ -34,7 +33,6 @@
   svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .avatar img, .call-main-avatar img, .avatar-preview img { pointer-events: none; user-select: none; -webkit-user-drag: none; }
 
-  /* --- ЭКРАН ВХОДА --- */
   #login-screen { position: fixed; inset: 0; background: var(--bg-color); z-index: 5000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.4s ease; }
   #login-screen.hidden { opacity: 0; pointer-events: none; }
   .login-box { background: var(--header-bg); backdrop-filter: blur(20px); padding: 30px 25px; border-radius: 24px; width: 90%; max-width: 340px; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.3); text-align: center; }
@@ -45,7 +43,6 @@
   .login-box button:active { transform: scale(0.95); }
   .error-text { color: var(--danger); font-size: 13px; margin-bottom: 10px; display: none; }
 
-  /* --- ШАПКА --- */
   header { background: var(--header-bg); backdrop-filter: blur(20px); padding: 12px 16px; display: flex; align-items: center; border-bottom: 1px solid var(--border); flex-shrink: 0; z-index: 10; }
   .avatar-wrapper { position: relative; margin-right: 12px; }
   .avatar { width: 44px; height: 44px; background: var(--my-msg); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; color: white; overflow: hidden; box-shadow: 0 0 15px var(--glow); }
@@ -57,14 +54,12 @@
   .header-btn { background: transparent; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; color: var(--kent-msg-text); transition: 0.2s; }
   .header-btn:hover { background: var(--input-bg); }
 
-  /* --- ЗАКРЕПЛЕННОЕ СООБЩЕНИЕ --- */
   #pinned-container { background: var(--header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 8px 16px; display: none; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); z-index: 9; cursor: pointer; }
   #pinned-container.active { display: flex; }
   .pin-icon { color: var(--accent); }
   #pinned-text { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--kent-msg-text); }
   .unpin-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 4px; }
 
-  /* --- ЧАТ --- */
   #chat { flex: 1; padding: 20px 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth; }
   .msg-wrapper { display: flex; flex-direction: column; max-width: 85%; animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; }
   .msg-wrapper.user { align-self: flex-end; align-items: flex-end; }
@@ -86,7 +81,6 @@
   .typing-dot:nth-child(2) { animation-delay: -0.16s; }
   @keyframes bounce { 0%, 80%, 100% { transform: scale(0); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
 
-  /* --- КОНТЕКСТНОЕ МЕНЮ --- */
   #context-menu { position: fixed; z-index: 10000; background: var(--header-bg); backdrop-filter: blur(25px); border: 1px solid var(--border); border-radius: 20px; padding: 10px; display: none; flex-direction: column; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); animation: popIn 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); width: 260px; }
   #context-menu.open { display: flex; }
   @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
@@ -98,7 +92,6 @@
   .menu-actions button:hover { background: var(--input-bg); }
   .menu-actions svg { width: 18px; height: 18px; }
 
-  /* --- ВВОД --- */
   footer { padding: 12px 16px; background: var(--header-bg); backdrop-filter: blur(20px); display: flex; gap: 10px; align-items: center; flex-shrink: 0; padding-bottom: max(12px, env(safe-area-inset-bottom)); border-top: 1px solid var(--border); }
   .input-container { flex: 1; background: var(--input-bg); border-radius: 24px; display: flex; align-items: center; padding: 6px 8px; border: 1px solid var(--border); transition: border-color 0.3s; height: 46px; }
   .input-container:focus-within { border-color: var(--accent); box-shadow: 0 0 10px var(--glow); }
@@ -113,7 +106,6 @@
   .recording { color: var(--danger) !important; animation: pulse-mic 1s infinite; }
   @keyframes pulse-mic { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
 
-  /* --- ЗВОНОК --- */
   #call-overlay { position: fixed; inset: 0; z-index: 1000; display: none; flex-direction: column; justify-content: space-between; padding: 30px 20px; background: rgba(10, 10, 18, 0.95); backdrop-filter: blur(25px); transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); overflow: hidden; }
   #call-overlay.active { display: flex; }
   
@@ -146,7 +138,6 @@
   #call-overlay.minimized .call-hint { display: none; }
   #call-overlay.minimized .call-bottom-bar { display: none; }
 
-  /* --- МОДАЛКИ --- */
   .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; padding: 20px; z-index: 2000; }
   .modal.open { display: flex; }
   .modal-box { background: var(--bg-color); padding: 24px; border-radius: 24px; width: 100%; max-width: 400px; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto; display: flex; flex-direction: column; }
@@ -189,9 +180,9 @@
   .toast { background: var(--kent-msg); color: var(--kent-msg-text); padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 500; border: 1px solid var(--border); box-shadow: 0 5px 20px rgba(0,0,0,0.2); animation: slideUpToast 0.3s forwards; }
   @keyframes slideUpToast { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   
-  /* Мобильная адаптация */
   @media (max-width: 800px) {
     header, #chat, footer, #pinned-container { max-width: 100%; }
+    .msg-wrapper { max-width: 90%; }
   }
 </style>
 </head>
@@ -410,9 +401,9 @@
 
 <script>
   // ==========================================
-  // ФИНАЛЬНАЯ МОДЕЛЬ GROQ
+  // НОВАЯ МОДЕЛЬ GROQ
   // ==========================================
-  const MODEL = 'llama-3.1-8b-instant'; 
+  const MODEL = 'openai/gpt-oss-20b'; 
   const API_URL = 'https://winter-recipe-8a5b.l09629219.workers.dev'; 
   
   const SECRET_PASSWORD = "@sorox@";
@@ -1252,4 +1243,4 @@
   });
 </script>
 </body>
-                                 </html>
+  </html>
